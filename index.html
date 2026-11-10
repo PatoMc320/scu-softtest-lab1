@@ -63,18 +63,18 @@
     <h1>软件测试实验1 · 基于输入域的测试</h1>
     <div class="sub">第23组（赵良翼 / 韦光富 / 陈笑行）· 被测系统 ATM 1.0 与 1.1</div>
   </div>
-  <div class="sub">更新于 2026-11-10 18:01（每 5 分钟自动重发一次）</div>
+  <div class="sub">更新于 2026-11-10 18:04（每 5 分钟自动重发一次）</div>
 </header>
 
 <div class="big">
-  <div class="pct">45<small>%</small></div>
-  <div class="bar"><i style="width:45%"></i></div>
+  <div class="pct">58<small>%</small></div>
+  <div class="bar"><i style="width:58%"></i></div>
 </div>
 <div class="nums">
   <div><b>67</b><span>用例总数</span></div>
   <div><b>39 / 39</b><span>本轮新增用例</span></div>
   <div><b>36 × 2</b><span>执行场景</span></div>
-  <div><b>1 / 9</b><span>本轮缺陷</span></div>
+  <div><b>9 / 9</b><span>本轮缺陷</span></div>
   <div><b>0 / 9</b><span>回归完成</span></div>
 </div>
 
@@ -85,9 +85,11 @@
   <span><i class="dot" style="background:var(--block)"></i>失误</span>
 </div>
 <div class="log">
+<div class="log-row"><span class="log-t">18:35</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">缺陷 9 条全部入库（转账少 $0.50 / 金额 0 反加钱 / 回执反向 / 卡号 3 越界 / PIN 重复输入 / 查询吐 $500 / 现金不足重选失败 / 1.1 标签缺 $）</span></div>
+<div class="log-row"><span class="log-t">18:30</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">需求补到 14 条用户故事（ATM-20~29），按人分工挂负责人</span></div>
+<div class="log-row"><span class="log-t">18:25</span><span class="log-k" style="background:var(--block)">失误</span><span class="log-x">测编辑时把 ATM-45 前置条件末尾多加了两个 X，已改回原样</span></div>
 <div class="log-row"><span class="log-t">18:12</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">缺陷第 1 条入库：取款档位金额错位（选 $20 吐 $40）</span></div>
-<div class="log-row"><span class="log-t">18:05</span><span class="log-k" style="background:var(--block)">失误</span><span class="log-x">PingCode 用例的修改/删除接口没开放，措辞要改只能逐条点铅笔编辑，先记下这笔账</span></div>
-<div class="log-row"><span class="log-t">18:00</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">36 个执行场景 × 2 个版本跑完，取款/转账/查询/卡号越界/验证码重输 6 条问题全部复现</span></div>
+<div class="log-row"><span class="log-t">18:00</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">36 个执行场景 × 2 个版本跑完，取款/转账/查询/卡号越界/PIN 重输 6 条问题全部复现</span></div>
 <div class="log-row"><span class="log-t">17:55</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">执行器跑通：Session / Transaction / SimulatedBank 用 jar 原始字节码，只把硬件换记录型桩</span></div>
 <div class="log-row"><span class="log-t">17:45</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">反编译 1.0 与 1.1 逐类比对：7 个类有差异，定位 9 处缺陷候选</span></div>
 <div class="log-row"><span class="log-t">17:35</span><span class="log-k" style="background:var(--accent)">修改</span><span class="log-x">放弃逐个点按钮建用例，改用页面自带接口批量写入，39 条一次灌完</span></div>
