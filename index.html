@@ -3,233 +3,89 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>软件测试实验1 · 全流程进度</title>
+<title>软件测试实验1 · 基于输入域的测试</title>
 <style>
-  :root{--bg:#0d1014;--panel:#151a21;--panel2:#1b212a;--line:#28303a;--txt:#e8ecf2;--dim:#93a0b0;
-        --accent:#6ea8fe;--done:#3fbf8f;--doing:#e8a75c;--todo:#57606e;--block:#e06c75;}
+  :root{--bg:#0c0f14;--panel:#141922;--panel2:#1a212b;--line:#262f3b;--txt:#e9edf4;--dim:#8f9cae;
+        --accent:#6ea8fe;--done:#3fbf8f;--doing:#e8a75c;--todo:#586274;--block:#e06c75;}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC",Arial,sans-serif}
-  .wrap{max-width:1000px;margin:0 auto;padding:26px 18px 70px}
-  header{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:flex-end;
-         border-bottom:1px solid var(--line);padding-bottom:14px}
-  h1{font-size:20px;margin:0;font-weight:650}
-  .sub{color:var(--dim);font-size:12.5px;margin-top:4px}
-  .big{display:flex;gap:18px;align-items:center;margin:20px 0 8px;flex-wrap:wrap}
-  .pct{font-size:38px;font-weight:700;letter-spacing:-1px;line-height:1}
-  .pct small{font-size:14px;color:var(--dim);font-weight:400;margin-left:4px}
-  .bar{flex:1;min-width:180px;height:10px;background:var(--panel2);border-radius:99px;overflow:hidden}
-  .bar i{display:block;height:100%;background:linear-gradient(90deg,#6ea8fe,#3fbf8f)}
-  .nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:14px 0 6px}
-  .nums div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
-  .nums b{display:block;font-size:19px;font-weight:650}
-  .nums span{color:var(--dim);font-size:12px}
-  h3{font-size:15px;margin:32px 0 10px;font-weight:650}
-  .log{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 14px}
-  .log-row{display:grid;grid-template-columns:52px 46px 1fr;gap:10px;align-items:start;
-           padding:9px 0;border-top:1px solid var(--line);font-size:13.5px}
-  .log-row:first-child{border-top:none}
-  .log-t{color:var(--dim);font-variant-numeric:tabular-nums;font-size:12.5px;padding-top:1px}
-  .log-k{font-size:11.5px;color:#0d1014;border-radius:99px;text-align:center;padding:1px 0;height:19px;font-weight:600}
-  .legend{display:flex;gap:14px;flex-wrap:wrap;color:var(--dim);font-size:12.5px;margin:10px 0 4px}
-  .legend span{display:flex;gap:5px;align-items:center}
-  .dot{width:9px;height:9px;border-radius:99px;display:inline-block}
-  .stage{position:relative;padding-left:34px;margin-bottom:6px}
-  .stage:before{content:"";position:absolute;left:11px;top:26px;bottom:-8px;width:2px;background:var(--line)}
-  .stage:last-child:before{display:none}
-  .head{display:flex;align-items:center;gap:10px;margin:22px 0 10px;position:relative}
-  .head .idx{position:absolute;left:-34px;width:24px;height:24px;border-radius:99px;background:var(--panel2);
-             border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--dim)}
-  .head h2{font-size:16px;margin:0;font-weight:650}
-  .head .meta{color:var(--dim);font-size:12.5px}
-  .steps{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  .step{display:grid;grid-template-columns:26px 1fr auto;gap:10px;align-items:start;padding:11px 14px;border-top:1px solid var(--line)}
-  .step:first-child{border-top:none}
-  .step .m{font-size:13.5px}
-  .step .m em{display:block;color:var(--dim);font-style:normal;font-size:12px;margin-top:2px}
-  .badge{font-size:11.5px;padding:2px 9px;border-radius:99px;white-space:nowrap;border:1px solid}
-  .b-done{color:#0d1014;background:var(--done);border-color:var(--done)}
-  .b-doing{color:#0d1014;background:var(--doing);border-color:var(--doing)}
-  .b-todo{color:var(--dim);border-color:var(--line)}
-  .b-block{color:#0d1014;background:var(--block);border-color:var(--block)}
-  table.diff{width:100%;border-collapse:collapse;font-size:13px;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  table.diff th,table.diff td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-  table.diff th{color:var(--dim);font-size:12px;font-weight:600}
-  table.diff tr:last-child td{border-bottom:none}
-  footer{margin-top:34px;border-top:1px solid var(--line);padding-top:12px;color:var(--dim);font-size:12px}
+  .wrap{max-width:1040px;margin:0 auto;padding:30px 20px 70px}
+  header.top{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-end;
+    border-bottom:1px solid var(--line);padding-bottom:16px}
+  h1{font-size:21px;margin:0;font-weight:650}
+  .sub{color:var(--dim);font-size:12.5px;margin-top:6px;line-height:1.5}
+  .stamp{color:var(--dim);font-size:12.5px;text-align:right}
+  .hero{display:flex;gap:20px;align-items:center;margin:22px 0 10px;flex-wrap:wrap}
+  .num{font-size:46px;font-weight:700;letter-spacing:-1.5px;line-height:1}
+  .num small{font-size:15px;color:var(--dim);font-weight:400;margin-left:4px}
+  .bar{flex:1;min-width:200px}
+  .bar .track{height:10px;background:var(--panel2);border-radius:99px;overflow:hidden}
+  .bar .fill{height:100%;background:linear-gradient(90deg,#6ea8fe,#3fbf8f)}
+  .bar .cap{color:var(--dim);font-size:12px;margin-top:6px}
+  h2{font-size:16px;margin:0}
+  .block{margin:26px 0 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .block header{display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border-bottom:1px solid var(--line)}
+  .ratio{color:var(--dim);font-size:12.5px;font-variant-numeric:tabular-nums}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  td{padding:9px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.n{width:290px}
+  td.note{color:var(--dim);font-size:12.5px}
+  .pill{display:inline-block;font-size:11.5px;padding:1px 10px;border-radius:99px;color:#0c0f14;font-weight:600}
+  .logs{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:4px 16px;margin-top:26px}
+  .lg{display:grid;grid-template-columns:52px 46px 1fr;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:13px}
+  .lg:first-child{border-top:none}
+  .lt{color:var(--dim);font-variant-numeric:tabular-nums;font-size:12.5px}
+  .lk{font-size:11.5px;border-radius:99px;text-align:center;color:#0c0f14;font-weight:600;height:19px;padding:0 6px}
+  footer{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;color:var(--dim);font-size:12px}
   a{color:var(--accent);text-decoration:none}
   code{background:var(--panel2);padding:1px 5px;border-radius:4px;font-size:12px}
 </style>
 </head>
 <body>
 <div class="wrap">
-<header>
-  <div>
-    <h1>软件测试实验1 · 基于输入域的测试</h1>
-    <div class="sub">第23组（赵良翼 / 韦光富 / 陈笑行）· 被测系统 ATM 1.0 与 1.1</div>
-  </div>
-  <div class="sub">更新于 2026-11-10 19:56（每 5 分钟自动重发一次）</div>
+<header class="top">
+  <div><h1>软件测试实验1 · 基于输入域的测试</h1><div class="sub">第23组（赵良翼 2023141010072 / 韦光富 2024141460207 / 陈笑行 2023141461188）<br>被测系统 ATM System 1.0 与 1.1 · 四川大学 2026-2027 秋季</div></div>
+  <div class="stamp">更新于 2026-11-10 19:57<br>每 5 分钟自动重发</div>
 </header>
 
-<div class="big">
-  <div class="pct">78<small>%</small></div>
-  <div class="bar"><i style="width:78%"></i></div>
-</div>
-<div class="nums">
-  <div><b>72</b><span>用例总数</span></div>
-  <div><b>41 / 41</b><span>本轮新增用例</span></div>
-  <div><b>40 有效 + 1 受阻</b><span>执行场景</span></div>
-  <div><b>10 / 10</b><span>本轮缺陷</span></div>
-  <div><b>9 / 9</b><span>回归完成</span></div>
-</div>
-
-<h3>日志 · 进展 / 修改 / 失误</h3>
-<div class="legend">
-  <span><i class="dot" style="background:var(--done)"></i>进展</span>
-  <span><i class="dot" style="background:var(--accent)"></i>修改</span>
-  <span><i class="dot" style="background:var(--block)"></i>失误</span>
-</div>
-<div class="log">
-<div class="log-row"><span class="log-t">19:58</span><span class="log-k" style="background:var(--accent)">修改</span><span class="log-x">进度口径改为按条目算：22/28 项完成，78%；之前 92% 是我拍脑袋</span></div>
-<div class="log-row"><span class="log-t">19:56</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">补建关机用例两条（A13 空闲关机、A14 服务中按 OFF 不打断交易），用 ATM 状态机实测通过</span></div>
-<div class="log-row"><span class="log-t">19:50</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">A09/A10 补挂到「插卡识别」故事</span></div>
-<div class="log-row"><span class="log-t">19:42</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">验收表写完</span></div>
-<div class="log-row"><span class="log-t">19:36</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">39 条用例挂到 6 个用户故事</span></div>
-<div class="log-row"><span class="log-t">19:24</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">等价类表与边界值表写完</span></div>
-<div class="log-row"><span class="log-t">19:20</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">10 条缺陷状态流转 + 回归评论</span></div>
-<div class="log-row"><span class="log-t">19:05</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">1.1 回归 9 条结果记完</span></div>
-<div class="log-row"><span class="log-t">18:55</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">39 条执行结果录入（18 通过/20 失败/1 受阻）</span></div>
-<div class="log-row"><span class="log-t">18:24</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">1.0 与 1.1 吐钞对比截图</span></div>
-<div class="log-row"><span class="log-t">17:57</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">执行器跑完 36 场景 × 2 版本</span></div>
-<div class="log-row"><span class="log-t">17:45</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">反编译比对定位 9 处可疑点</span></div>
-</div>
-
-<h3>复盘：和原计划的偏差</h3>
-<table class="diff">
-  <tr><th style="width:150px">原来的假设</th><th>实际情况</th><th style="width:220px">处置</th></tr>
-  <tr><td>用例不能删也不能改</td><td>PingCode 只开放创建，改/删接口 405</td><td>文案一次写对；残留 2 条从计划里剔除</td></tr>
-<tr><td>用例不能单独执行</td><td>必须先入计划，再在计划里记结果</td><td>执行记录统一在计划里做，共 39 条</td></tr>
-<tr><td>合成点击进不了 Java 界面</td><td>Robot 和系统事件都没反应</td><td>界面层改用触发控件事件，只验 3 条，报告写明</td></tr>
-<tr><td>只有一个账号</td><td>三人共用赵良翼账号</td><td>分工体现在维护人和缺陷负责人上</td></tr>
-<tr><td>状态流转是秒点三下</td><td>真实流程应有间隔和说明</td><td>补了 9 条回归评论留痕，报告说清限制</td></tr>
-</table>
-
-<h3>还差什么</h3>
-<table class="diff">
-  <tr><th style="width:220px">项</th><th style="width:120px">状态</th><th>说明</th></tr>
-  <tr><td>用例关联用户故事</td><td><span style="color:var(--block)">39/72 条</span></td><td>剩余老用例 27 条未挂</td></tr>
-<tr><td>老用例预期结果</td><td><span style="color:var(--block)">19 条为空</span></td><td>逐条补</td></tr>
-<tr><td>重要程度</td><td><span style="color:var(--block)">31 条为空</span></td><td>批量设 P2，进行中</td></tr>
-<tr><td>测试类型（手动/自动）</td><td><span style="color:var(--block)">老用例为空</span></td><td>批量设手动</td></tr>
-<tr><td>两个计划状态</td><td><span style="color:var(--block)">仍是未开始</span></td><td>改已完成</td></tr>
-<tr><td>C05 挂到存款超时故事</td><td><span style="color:var(--block)">未挂</span></td><td>补挂</td></tr>
-<tr><td>成员改名/组员管理员/助教老师密码</td><td><span style="color:var(--block)">未做</span></td><td>需组长</td></tr>
-<tr><td>报告重做（图表+截图）</td><td><span style="color:var(--block)">待做</span></td><td>本轮做</td></tr>
-</table>
-
-<div class="stage">
-  <div class="head"><div class="idx">0</div><h2>准备：摸清系统和平台</h2><span class="meta">4 步 · 3 完成</span></div>
-  <div class="steps">
-    <div class="step"><i class="dot" style="background:var(--done)"></i>
-      <div class="m">读透实验指导与附录需求<em>5 个功能、吐钞只出 20 的倍数、PIN 错 3 次吞卡、回执 7 个字段</em></div>
-      <span class="badge b-done">完成</span></div>
-    <div class="step"><i class="dot" style="background:var(--done)"></i>
-      <div class="m">反编译 1.0 与 1.1 比对<em>38 个类里 7 个有差异，摸出 9 处可疑点</em></div>
-      <span class="badge b-done">完成</span></div>
-    <div class="step"><i class="dot" style="background:var(--done)"></i>
-      <div class="m">GUI 跑通，确认操作路径<em>ON → 装钞 → 插卡 → PIN → 选交易 → 退卡</em></div>
-      <span class="badge b-done">完成</span></div>
-    <div class="step"><i class="dot" style="background:var(--block)"></i>
-      <div class="m">平台配置<em>成员改名「姓名+学号」、组员设管理员、助教老师密码 aa123456 —— 要组长动手</em></div>
-      <span class="badge b-block">等组长</span></div>
+<div class="hero">
+  <div class="num">71<small>%</small></div>
+  <div class="bar">
+    <div class="track"><div class="fill" style="width:71%"></div></div>
+    <div class="cap">按条目算：20 / 28 项完成。三项「等你」是只有组长账号能做的平台配置。</div>
   </div>
 </div>
 
-<div class="stage">
-  <div class="head"><div class="idx">1</div><h2>需求：写成用户故事</h2><span class="meta">2 步 · 0 完成</span></div>
-  <div class="steps">
-    <div class="step"><i class="dot" style="background:var(--doing)"></i>
-      <div class="m">补 10 条用户故事<em>已有存款 2 条、查询、回执；缺开机、插卡、PIN 锁定、交易类型、取款、转账、取消、退出、关机、失败提示</em></div>
-      <span class="badge b-doing">进行中</span></div>
-    <div class="step"><i class="dot" style="background:var(--todo)"></i>
-      <div class="m">用例关联用户故事<em>原有 27 条都没关联</em></div>
-      <span class="badge b-todo">待做</span></div>
-  </div>
-</div>
 
-<div class="stage">
-  <div class="head"><div class="idx">2</div><h2>设计：等价类 + 边界值</h2><span class="meta">4 步 · 2 完成</span></div>
-  <div class="steps">
-    <div class="step"><i class="dot" style="background:var(--done)"></i>
-      <div class="m">输入域盘点、模块划分<em>8 个输入域，7 个模块</em></div>
-      <span class="badge b-done">完成</span></div>
-    <div class="step"><i class="dot" style="background:var(--done)"></i>
-      <div class="m">39 条新用例写好并入库<em>取款 12、转账 8、开机与登录 12、取消与退出 7</em></div>
-      <span class="badge b-done">完成</span></div>
-    <div class="step"><i class="dot" style="background:var(--doing)"></i>
-      <div class="m">等价类表和边界值表<em>把每个输入域的有效/无效类整理成文档</em></div>
-      <span class="badge b-doing">进行中</span></div>
-    <div class="step"><i class="dot" style="background:var(--doing)"></i>
-      <div class="m">统一措辞、按人分摊维护人<em>取款/取消→赵良翼，转账/开机→韦光富，原有→陈笑行</em></div>
-      <span class="badge b-doing">进行中</span></div>
-  </div>
-</div>
+<section class="block">
+  <header><h2>平台配置</h2><span class="ratio">3/6</span></header>
+  <table><tr><td class="n">团队名第23组、域名填表</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">第23组，域名 yeqo20261029100446180 已提交</td></tr><tr><td class="n">邀请组员/助教/老师</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">项目与测试库各 5 人</td></tr><tr><td class="n">项目 ATM_23组（Scrum）</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">已建，成员含老师助教</td></tr><tr><td class="n">成员姓名改「姓名+学号」</td><td><span class="pill" style="background:var(--block)">等你</span></td><td class="note">要组长操作</td></tr><tr><td class="n">组员设为管理员并配权限</td><td><span class="pill" style="background:var(--block)">等你</span></td><td class="note">要组长操作</td></tr><tr><td class="n">助教老师密码 aa123456</td><td><span class="pill" style="background:var(--block)">等你</span></td><td class="note">要组长操作</td></tr></table>
+</section>
+<section class="block">
+  <header><h2>需求与用例设计</h2><span class="ratio">5/7</span></header>
+  <table><tr><td class="n">用户故事覆盖附录需求</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">14 条（原 4 + 新 10）</td></tr><tr><td class="n">等价类划分表</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">02_等价类与边界值.md</td></tr><tr><td class="n">边界值分析表</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">同文件</td></tr><tr><td class="n">按功能划分模块</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">7 个模块，72 条用例</td></tr><tr><td class="n">按人分工，每人 ≥10 条</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">赵 23 / 韦 20 / 陈 27</td></tr><tr><td class="n">用例关联用户故事</td><td><span class="pill" style="background:var(--doing)">在补</span></td><td class="note">41/72 条已挂，剩老用例 27 条</td></tr><tr><td class="n">用例字段完整（预期/重要程度/类型）</td><td><span class="pill" style="background:var(--doing)">在补</span></td><td class="note">老用例 19 条预期为空、31 条重要程度为空</td></tr></table>
+</section>
+<section class="block">
+  <header><h2>执行与缺陷</h2><span class="ratio">6/7</span></header>
+  <table><tr><td class="n">建测试库、计划关联项目</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">测试库 ATM_23组；v1.0 与 v1.1 计划均已关联项目</td></tr><tr><td class="n">用例规划进计划</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">v1.0 计划 43 条，回归计划 9 条</td></tr><tr><td class="n">1.0 逐条记录执行结果</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">41 条已测：18 通过 / 20 失败 / 1 受阻</td></tr><tr><td class="n">不通过建缺陷并关联用例</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">10 条缺陷，全部挂到用例</td></tr><tr><td class="n">缺陷字段填完整</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">严重程度、复现概率、负责人、优先级齐全</td></tr><tr><td class="n">计划状态 未开始→进行中→已完成</td><td><span class="pill" style="background:var(--doing)">在补</span></td><td class="note">平台下拉点不开，待处理</td></tr><tr><td class="n">测试报告总览</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">报表页与计划结果已截图</td></tr></table>
+</section>
+<section class="block">
+  <header><h2>回归</h2><span class="ratio">4/4</span></header>
+  <table><tr><td class="n">单独建回归计划，只放缺陷相关用例</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">9 条</td></tr><tr><td class="n">1.1 重跑并记结果</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">4 通过 / 5 失败</td></tr><tr><td class="n">缺陷状态流转</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">已发布 4 条、重新打开 4 条、处理中 2 条</td></tr><tr><td class="n">未修复的在评论说明</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">9 条都写了 1.0 现象→1.1 结果→结论</td></tr></table>
+</section>
+<section class="block">
+  <header><h2>报告与交付</h2><span class="ratio">2/4</span></header>
+  <table><tr><td class="n">实验报告 PDF</td><td><span class="pill" style="background:var(--doing)">在补</span></td><td class="note">初版 6 页，正在补图表与截图</td></tr><tr><td class="n">截图证据</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">平台 5 张 + 吐钞对比 2 张</td></tr><tr><td class="n">执行脚本与结果可复现</td><td><span class="pill" style="background:var(--done)">完成</span></td><td class="note">harness + 场景脚本 + results_raw.json</td></tr><tr><td class="n">交付包</td><td><span class="pill" style="background:var(--doing)">在补</span></td><td class="note">已打包，报告更新后要重打</td></tr></table>
+</section>
 
-<div class="stage">
-  <div class="head"><div class="idx">3</div><h2>执行：1.0 上跑用例记结果</h2><span class="meta">3 步 · 2 完成</span></div>
-  <div class="steps">
-    <div class="step"><i class="dot" style="background:var(--done)"></i>
-      <div class="m">写执行器<em>真实类 + 硬件桩，36 个场景，单条 1 秒内出结果</em></div>
-      <span class="badge b-done">完成</span></div>
-    <div class="step"><i class="dot" style="background:var(--done)"></i>
-      <div class="m">1.0 全量跑完，结果落盘<em>取款错位、转账少 $0.50、卡号 3 越界等全部复现</em></div>
-      <span class="badge b-done">完成</span></div>
-    <div class="step"><i class="dot" style="background:var(--todo)"></i>
-      <div class="m">结果录进 PingCode 测试计划<em>每条用例记运行结果与是否通过</em></div>
-      <span class="badge b-todo">待做</span></div>
-  </div>
-</div>
-
-<div class="stage">
-  <div class="head"><div class="idx">4</div><h2>缺陷：不通过就提单</h2><span class="meta">2 步 · 0 完成</span></div>
-  <div class="steps">
-    <div class="step"><i class="dot" style="background:var(--doing)"></i>
-      <div class="m">按失败用例建缺陷单<em>严重程度、复现概率、步骤、预期、实际都要填，并挂到用例上</em></div>
-      <span class="badge b-doing">1 / 9</span></div>
-    <div class="step"><i class="dot" style="background:var(--todo)"></i>
-      <div class="m">缺陷状态流转<em>新提交 → 处理中 → 已修复</em></div>
-      <span class="badge b-todo">待做</span></div>
-  </div>
-</div>
-
-<div class="stage">
-  <div class="head"><div class="idx">5</div><h2>回归：1.1 上验证</h2><span class="meta">2 步 · 0 完成</span></div>
-  <div class="steps">
-    <div class="step"><i class="dot" style="background:var(--todo)"></i>
-      <div class="m">建回归计划，只放与缺陷相关的用例</div>
-      <span class="badge b-todo">待做</span></div>
-    <div class="step"><i class="dot" style="background:var(--todo)"></i>
-      <div class="m">跑 1.1、流转状态<em>修好→已发布；没修好→重新打开并在评论写「1.1版本中缺陷仍存在」</em></div>
-      <span class="badge b-todo">待做</span></div>
-  </div>
-</div>
-
-<div class="stage">
-  <div class="head"><div class="idx">6</div><h2>交付</h2><span class="meta">3 步 · 1 完成</span></div>
-  <div class="steps">
-    <div class="step"><i class="dot" style="background:var(--done)"></i>
-      <div class="m">这个进度页</div><span class="badge b-done">完成</span></div>
-    <div class="step"><i class="dot" style="background:var(--todo)"></i>
-      <div class="m">实验报告 PDF<em>数字全部从结果文件取，不手抄</em></div>
-      <span class="badge b-todo">待做</span></div>
-    <div class="step"><i class="dot" style="background:var(--todo)"></i>
-      <div class="m">整理提交包、三方对数字</div><span class="badge b-todo">待做</span></div>
-  </div>
-</div>
+<h2 style="margin-top:30px">日志</h2>
+<div class="logs"><div class="lg"><span class="lt">20:05</span><span class="lk" style="background:var(--accent)">修改</span><span class="lx">看板整体重做：按「平台配置/需求与设计/执行与缺陷/回归/报告」五块列条目，进度按条目算</span></div><div class="lg"><span class="lt">19:58</span><span class="lk" style="background:var(--accent)">修改</span><span class="lx">进度口径改为条目计算，之前的 92% 是拍脑袋</span></div><div class="lg"><span class="lt">19:56</span><span class="lk" style="background:var(--done)">进展</span><span class="lx">补建关机用例两条（A13 空闲关机、A14 服务中按 OFF 不打断），用 ATM 状态机实测</span></div><div class="lg"><span class="lt">19:50</span><span class="lk" style="background:var(--done)">进展</span><span class="lx">A09/A10 补挂到「插卡识别」用户故事</span></div><div class="lg"><span class="lt">19:42</span><span class="lk" style="background:var(--done)">进展</span><span class="lx">验收表写完（10_测试设计/03_验收表.md）</span></div><div class="lg"><span class="lt">19:36</span><span class="lk" style="background:var(--done)">进展</span><span class="lx">39 条用例逐条挂到 6 个用户故事</span></div><div class="lg"><span class="lt">19:24</span><span class="lk" style="background:var(--done)">进展</span><span class="lx">等价类表、边界值表写完</span></div><div class="lg"><span class="lt">19:20</span><span class="lk" style="background:var(--done)">进展</span><span class="lx">10 条缺陷状态流转，并补「1.0 现象→1.1 结果→结论」评论</span></div><div class="lg"><span class="lt">19:05</span><span class="lk" style="background:var(--done)">进展</span><span class="lx">1.1 回归计划 9 条记完：4 修好、4 仍坏、1 新引入</span></div><div class="lg"><span class="lt">18:55</span><span class="lk" style="background:var(--done)">进展</span><span class="lx">39 条执行结果录入 v1.0 计划</span></div><div class="lg"><span class="lt">18:24</span><span class="lk" style="background:var(--done)">进展</span><span class="lx">界面真跑到吐钞一步并截图：1.0 显示 $40.00，1.1 显示 $20.00</span></div><div class="lg"><span class="lt">18:00</span><span class="lk" style="background:var(--block)">失误</span><span class="lx">合成鼠标事件进不了 Java 界面，界面层只验到 3 条，报告里写明限制</span></div><div class="lg"><span class="lt">17:57</span><span class="lk" style="background:var(--done)">进展</span><span class="lx">执行器跑完 36 场景 × 2 版本，结果落盘</span></div><div class="lg"><span class="lt">17:45</span><span class="lk" style="background:var(--done)">进展</span><span class="lx">反编译 1.0/1.1 比对，7 个类有差异，定位 9 处可疑点</span></div></div>
 
 <footer>
   PingCode：<a href="https://yeqo20261029100446180.pingcode.com/testhub/libraries/ATM/cases">测试库 ATM_23组</a> ·
   <a href="https://yeqo20261029100446180.pingcode.com/pjm/projects/ATM/defect">缺陷列表</a><br>
-  本地源文件：<code>~/Desktop/SCU_Course/27秋/软测/Lab/实验1-基于输入域的测试/</code>
+  本地：<code>~/Desktop/SCU_Course/27秋/软测/Lab/实验1-基于输入域的测试/</code>
 </footer>
 </div>
 </body>
