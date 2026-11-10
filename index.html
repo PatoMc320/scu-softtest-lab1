@@ -67,17 +67,17 @@
     <h1>软件测试实验1 · 基于输入域的测试</h1>
     <div class="sub">第23组（赵良翼 / 韦光富 / 陈笑行）· 被测系统 ATM 1.0 与 1.1</div>
   </div>
-  <div class="sub">更新于 2026-11-10 18:21（每 5 分钟自动重发一次）</div>
+  <div class="sub">更新于 2026-11-10 18:25（每 5 分钟自动重发一次）</div>
 </header>
 
 <div class="big">
-  <div class="pct">62<small>%</small></div>
-  <div class="bar"><i style="width:62%"></i></div>
+  <div class="pct">72<small>%</small></div>
+  <div class="bar"><i style="width:72%"></i></div>
 </div>
 <div class="nums">
   <div><b>67</b><span>用例总数</span></div>
   <div><b>39 / 39</b><span>本轮新增用例</span></div>
-  <div><b>36 × 2</b><span>执行场景</span></div>
+  <div><b>39 条已记录</b><span>执行场景</span></div>
   <div><b>9 / 9</b><span>本轮缺陷</span></div>
   <div><b>0 / 9</b><span>回归完成</span></div>
 </div>
@@ -89,13 +89,11 @@
   <span><i class="dot" style="background:var(--block)"></i>失误</span>
 </div>
 <div class="log">
-<div class="log-row"><span class="log-t">18:50</span><span class="log-k" style="background:var(--accent)">修改</span><span class="log-x">复盘完成：修正 5 条偏差，补出 9 个漏项（计划未关联项目、用例未关联需求、缺陷未关联用例、计划状态未切进行中、回归流程未走等）</span></div>
-<div class="log-row"><span class="log-t">18:35</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">缺陷 9 条全部入库</span></div>
-<div class="log-row"><span class="log-t">18:30</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">需求补到 14 条用户故事，按人分工挂负责人</span></div>
-<div class="log-row"><span class="log-t">18:25</span><span class="log-k" style="background:var(--block)">失误</span><span class="log-x">测编辑时把 ATM-45 前置条件末尾多加了两个 X，已改回原样</span></div>
-<div class="log-row"><span class="log-t">18:12</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">缺陷第 1 条入库</span></div>
-<div class="log-row"><span class="log-t">18:05</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">39 条新用例全部入库，41 条已规划进 v1.0 测试计划</span></div>
-<div class="log-row"><span class="log-t">17:55</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">执行器跑通，36 场景 × 2 版本跑完</span></div>
+<div class="log-row"><span class="log-t">18:55</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">39 条用例的执行结果全部记入 v1.0 计划（31 条通过/失败 + 8 条补录），失败原因写的是实测数值</span></div>
+<div class="log-row"><span class="log-t">18:50</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">用 JVM 内触发控件动作的方式把界面真跑到「取款选 $20」，1.0 截图显示吐出 $40.00，1.1 显示 $20.00</span></div>
+<div class="log-row"><span class="log-t">18:40</span><span class="log-k" style="background:var(--block)">失误</span><span class="log-x">合成鼠标事件进不了 Java 界面，窗口一直不动；改成直接触发控件事件，界面层只验到 3 条</span></div>
+<div class="log-row"><span class="log-t">18:20</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">执行器结果复核：取款错位、转账少 $0.50、金额 0 反加钱、卡号 3 越界、PIN 重复、查询吐 $500 全部复现</span></div>
+<div class="log-row"><span class="log-t">18:05</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">39 条新用例入库，41 条规划进 v1.0 计划</span></div>
 <div class="log-row"><span class="log-t">17:45</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">反编译比对 1.0/1.1，定位 9 处可疑点</span></div>
 <div class="log-row"><span class="log-t">17:20</span><span class="log-k" style="background:var(--block)">失误</span><span class="log-x">4 个模块名带「未命名模块」前缀，已改名修正</span></div>
 </div>
