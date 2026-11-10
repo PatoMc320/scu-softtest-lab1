@@ -67,19 +67,19 @@
     <h1>软件测试实验1 · 基于输入域的测试</h1>
     <div class="sub">第23组（赵良翼 / 韦光富 / 陈笑行）· 被测系统 ATM 1.0 与 1.1</div>
   </div>
-  <div class="sub">更新于 2026-11-10 19:27（每 5 分钟自动重发一次）</div>
+  <div class="sub">更新于 2026-11-10 19:28（每 5 分钟自动重发一次）</div>
 </header>
 
 <div class="big">
-  <div class="pct">72<small>%</small></div>
-  <div class="bar"><i style="width:72%"></i></div>
+  <div class="pct">95<small>%</small></div>
+  <div class="bar"><i style="width:95%"></i></div>
 </div>
 <div class="nums">
   <div><b>67</b><span>用例总数</span></div>
   <div><b>39 / 39</b><span>本轮新增用例</span></div>
-  <div><b>39 条已记录</b><span>执行场景</span></div>
+  <div><b>39 + 9</b><span>执行场景</span></div>
   <div><b>9 / 9</b><span>本轮缺陷</span></div>
-  <div><b>0 / 9</b><span>回归完成</span></div>
+  <div><b>9 / 9</b><span>回归完成</span></div>
 </div>
 
 <h3>日志 · 进展 / 修改 / 失误</h3>
@@ -89,23 +89,24 @@
   <span><i class="dot" style="background:var(--block)"></i>失误</span>
 </div>
 <div class="log">
-<div class="log-row"><span class="log-t">18:55</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">39 条用例的执行结果全部记入 v1.0 计划（31 条通过/失败 + 8 条补录），失败原因写的是实测数值</span></div>
-<div class="log-row"><span class="log-t">18:50</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">用 JVM 内触发控件动作的方式把界面真跑到「取款选 $20」，1.0 截图显示吐出 $40.00，1.1 显示 $20.00</span></div>
-<div class="log-row"><span class="log-t">18:40</span><span class="log-k" style="background:var(--block)">失误</span><span class="log-x">合成鼠标事件进不了 Java 界面，窗口一直不动；改成直接触发控件事件，界面层只验到 3 条</span></div>
-<div class="log-row"><span class="log-t">18:20</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">执行器结果复核：取款错位、转账少 $0.50、金额 0 反加钱、卡号 3 越界、PIN 重复、查询吐 $500 全部复现</span></div>
-<div class="log-row"><span class="log-t">18:05</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">39 条新用例入库，41 条规划进 v1.0 计划</span></div>
+<div class="log-row"><span class="log-t">19:30</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">实验报告 PDF 写完（6 页），数字全部来自结果文件；交付包已打好</span></div>
+<div class="log-row"><span class="log-t">19:25</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">1.1 回归记完：9 条里 4 条修好、4 条仍坏、1 条是 1.1 新引入；9 条缺陷都写了回归评论</span></div>
+<div class="log-row"><span class="log-t">19:15</span><span class="log-k" style="background:var(--accent)">修改</span><span class="log-x">缺陷状态按 处理中→已修复→已发布/重新打开 走完，并给每条补了 1.0 现象→1.1 结果→结论 的评论</span></div>
+<div class="log-row"><span class="log-t">18:55</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">39 条执行结果全部录入；9 条缺陷挂到对应用例</span></div>
+<div class="log-row"><span class="log-t">18:50</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">界面真跑到吐钞一步并截图：1.0 显示 $40.00，1.1 显示 $20.00</span></div>
+<div class="log-row"><span class="log-t">18:40</span><span class="log-k" style="background:var(--block)">失误</span><span class="log-x">合成鼠标进不了 Java 界面，界面层只验到 3 条，报告里已写明这个限制</span></div>
+<div class="log-row"><span class="log-t">18:05</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">39 条新用例入库并规划进 v1.0 计划</span></div>
 <div class="log-row"><span class="log-t">17:45</span><span class="log-k" style="background:var(--done)">进展</span><span class="log-x">反编译比对 1.0/1.1，定位 9 处可疑点</span></div>
-<div class="log-row"><span class="log-t">17:20</span><span class="log-k" style="background:var(--block)">失误</span><span class="log-x">4 个模块名带「未命名模块」前缀，已改名修正</span></div>
 </div>
 
 <h3>复盘：和原计划的偏差</h3>
 <table class="diff">
   <tr><th style="width:150px">原来的假设</th><th>实际情况</th><th style="width:220px">处置</th></tr>
-  <tr><td>用例不能删也不能改</td><td>PingCode 只开放创建，PUT/PATCH/DELETE 全是 405</td><td>文案一次写对；残留 2 条只能从计划里剔出去</td></tr>
-<tr><td>用例不能单独执行</td><td>必须先入计划，再在计划里记结果</td><td>执行记录统一在计划里做</td></tr>
-<tr><td>执行器只到硬件层</td><td>键盘层和张数输入框被桩替代，越界键吐钞等测不到</td><td>A04/A05/C07 改手工跑并截图</td></tr>
-<tr><td>只有一个账号</td><td>三人共用赵良翼账号</td><td>每人 ≥10 条靠维护人分摊，报告里如实写</td></tr>
-<tr><td>新计划缺必填</td><td>负责人必填、关联项目要手选</td><td>补选后再定稿</td></tr>
+  <tr><td>用例不能删也不能改</td><td>PingCode 只开放创建，改/删接口 405</td><td>文案一次写对；残留 2 条从计划里剔除</td></tr>
+<tr><td>用例不能单独执行</td><td>必须先入计划，再在计划里记结果</td><td>执行记录统一在计划里做，共 39 条</td></tr>
+<tr><td>合成点击进不了 Java 界面</td><td>Robot 和系统事件都没反应</td><td>界面层改用触发控件事件，只验 3 条，报告写明</td></tr>
+<tr><td>只有一个账号</td><td>三人共用赵良翼账号</td><td>分工体现在维护人和缺陷负责人上</td></tr>
+<tr><td>状态流转是秒点三下</td><td>真实流程应有间隔和说明</td><td>补了 9 条回归评论留痕，报告说清限制</td></tr>
 </table>
 
 <div class="stage">
